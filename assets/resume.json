@@ -1,0 +1,145 @@
+{
+  "basics":{
+     "location":{
+        "city":"Monterrey",
+        "countryCode":"México",
+        "region":"Nuevo León"
+     },
+     "profiles":[
+        {
+           "network":"LinkedIn",
+           "username":"max-hernandez-castillo",
+           "url":"https://www.linkedin.com/in/max-hernandez-castillo/"
+        },
+        {
+           "network":"Github",
+           "username":"maxkalavera",
+           "url":"https://github.com/maxkalavera"
+        }
+     ],
+     "name":"Maximiliano Hernandez Castillo",
+     "label":"Software Engineer | Full Stack Developer",
+     "email":"maxhernandezcastillo@gmail.com",
+     "url":"https://maxkalavera.github.io/",
+     "summary":"Experienced software engineer from Monterrey, Mexico, with over 3 years of expertise in web development. Proficient in Python and JavaScript with a strong ability to transform business requirements into effective software solutions. Extensive experience with Linux systems and hands-on knowledge of graphical user interface design and development."
+  },
+  "work":[
+      {
+         "url":"https://www.wizeline.com/",
+         "summary":"- Focused on front-end development for e-commerce websites, collaborating with cross-functional teams using **Agile methodologies (Scrum)**.\n- Refined front-end expertise by mastering tools like **TypeScript** and adopting industry best practices such as **Test-Driven Development (TDD)** and **SOLID principles**.\n- Contributed to high-quality codebases through adherence to clean coding standards and collaborative problem-solving with highly skilled professionals.\n- Gained hands-on experience in building scalable, user-friendly interfaces that align with business goals and customer needs.",
+         "description":"Software consulting company",
+         "location":"Guadalajara, Jalisco, México",
+         "position":"Software Engineer / Front-End Developer",
+         "name":"Wizeline",
+         "startDate":"2022-01-01",
+         "endDate":"2022-07-01"
+      },
+     {
+        "description":"Software consulting company",
+        "name":"Crea Libre / Evient",
+        "position":"Full Stack Software Engineer",
+        "location":"San Nicolas, Nuevo León, México",
+        "url":"https://evient.mx/",
+        "summary":"- **Back-End Development** : Built RESTful APIs using Django, optimized SQL queries, and improved database schemas for enhanced performance.\n- **Backend Features** : Implemented WebSocket communication, Firebase push notifications, and scheduled background processes for data maintenance.\n- **Front-End Development** : Developed static websites using HTML, CSS, and JavaScript, later transitioning to modern frameworks like React, Redux, and Bootstrap to meet project deadlines.\n- **Technology Adoption** : Quickly gained Proficient in Node.js for building scalable applications, with hands-on experience using AWS and Heroku for basic deployment and configuration needs.\n- **Collaboration** : Worked across full-stack development, contributing to both backend and frontend tasks while adhering to best practices and addressing tight deadlines.",
+        "startDate":"2017-06-01",
+        "endDate":"2019-07-01"
+     }
+  ],
+  "education":[
+     {
+        "institution":"University of Nuevo León (UANL)",
+        "url":"https://www.uanl.mx/",
+        "area":"Software Engineering",
+        "studyType":"Bachelor’s degree",
+        "startDate":"2009-08-01",
+        "endDate":"2015-01-01"
+     }
+  ],
+  "certificates":[
+     {
+        "issuer":"Coursera",
+        "date": "2021-08-15",
+        "url":"https://www.coursera.org/account/accomplishments/specialization/certificate/K6495WPA96GR",
+        "name":"Graphic Design Specialization"
+     },
+     {
+        "name":"Machine Learning",
+        "date": "2020-12-29",
+        "url":"https://www.coursera.org/account/accomplishments/certificate/A8FCSDG5P9M9",
+        "issuer":"Coursera"
+     }
+  ],
+  "skills":[
+      {
+         "keywords":[
+            "Python",
+            "Node.js",
+            "Flask",
+            "Django",
+            "Express",
+            "SQL",
+            "PostgreSQL",
+            "MySQL",
+            "SQLite",
+            "Jenkins",
+            "Linux",
+            "Bash"
+         ],
+         "name":"Backend Development",
+         "level":"4"
+      },
+      {
+        "keywords":[
+           "HTML",
+           "CSS (LESS / SCSS)",
+           "Tailwind",
+           "JavaScript",
+           "Node.js",
+           "React",
+           "Redux",
+           "Jotai",
+           "Next.js",
+           "Electron"
+        ],
+        "name":"Frontend Development",
+        "level":"5"
+      },
+      {
+        "keywords":[
+           "Algorithms",
+           "Data Structures",
+           "OOP",
+           "SOLID",
+           "Functional Programming",
+           "Network Protocols",
+           "Network Architecture",
+           "Security",
+           "Information Systems",
+           "Embedded Systems"
+        ],
+        "name":"Software Engineering Foundations",
+        "level":"4"
+     },
+     {
+         "keywords":[
+            "Fundamentals",
+            "Figma",
+            "Inkscape",
+            "Vectornator",
+            "Gimp"
+         ],
+         "name":"UX/UI Design",
+         "level":"3"
+      }
+  ],
+  "languages":[
+     {
+        "language":"English",
+        "fluency":"4"
+     },
+     {
+        "language":"Spanish",
+        "fluency":"5"
+     }
+  ]
+}

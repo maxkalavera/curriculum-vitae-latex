@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es2025",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    // Output directory
+    "outDir": "./dist",
+    "rootDir": "./",
+    // Enable strict type checking
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    // Enable for CLI script features
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    // Source maps for debugging
+    "sourceMap": true,
+    "declaration": false,
+    // Node.js specific
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types"],
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+    }
+  },
+  "include": [
+    "scripts.ts",
+    "src/**/*.ts",
+    "scripts/**/*.ts"
+    // "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+  ]
+}
