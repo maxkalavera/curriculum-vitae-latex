@@ -19,8 +19,7 @@ function main () {
     --rm \
     -v "${WORKSPACE}":/root/workspace \
     -w /root/workspace \
-    debian-tinytex /bin/bash \
-  
+    tinytex /bin/bash
 }
 
 main "$@"

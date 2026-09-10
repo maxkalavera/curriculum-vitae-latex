@@ -1,20 +1,17 @@
-import * as E from 'fp-ts/Either'
-import * as O from 'fp-ts/Option'
-import * as T from 'fp-ts/Task'
-import * as TE from 'fp-ts/TaskEither'
-import { 
-  pipe, 
-  flow
-} from 'fp-ts/function'
-import { getOrThrow } from '@/lib/fp'
+import {
+  compose,
+  flow,
+  pipe,
+  Maybe,
+  MaybeAsync,
+  Either, 
+  EitherAsync
+} from '@/lib/purify'
 
-
-globalThis.Either = E
-globalThis.Opt = O
-globalThis.Task = T
-globalThis.TaskEither = {
-  ...TE,
-  getOrThrow
-}
-globalThis.pipe = pipe
+globalThis.compose = compose
 globalThis.flow = flow
+globalThis.pipe = pipe
+globalThis.Maybe = Maybe
+globalThis.MaybeAsync = MaybeAsync
+globalThis.Either = Either
+globalThis.EitherAsync = EitherAsync

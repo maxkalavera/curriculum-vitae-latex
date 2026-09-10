@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{fontawesome5}
+\usepackage{markdown}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[sf]{libertine}
+\usepackage{geometry}
+\usepackage{supertabular}
+
+\geometry{a4paper}
+\fontsize{12pt}{15pt}\selectfont
+\setlength\parindent{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Color definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{primary-50}{HTML}{fafaf9} 
+\definecolor{primary-100}{HTML}{f5f5f4}
+\definecolor{primary-200}{HTML}{e7e5e4}
+\definecolor{primary-300}{HTML}{d6d3d1}
+\definecolor{primary-400}{HTML}{a8a29e}
+\definecolor{primary-500}{HTML}{78716c}
+\definecolor{primary-600}{HTML}{57534e}
+\definecolor{primary-700}{HTML}{44403c}
+\definecolor{primary-800}{HTML}{292524}
+\definecolor{primary-900}{HTML}{1c1917}
+\definecolor{primary-950}{HTML}{0c0a09}
+
+\definecolor{accent}{HTML}{b45309} 
+\definecolor{accent-50}{HTML}{fffbeb} 
+\definecolor{accent-100}{HTML}{fef3c7}
+\definecolor{accent-200}{HTML}{fde68a}
+\definecolor{accent-300}{HTML}{fcd34d}
+\definecolor{accent-400}{HTML}{fbbf24}
+\definecolor{accent-500}{HTML}{f59e0b}
+\definecolor{accent-600}{HTML}{d97706}
+\definecolor{accent-700}{HTML}{b45309}
+\definecolor{accent-800}{HTML}{92400e}
+\definecolor{accent-900}{HTML}{78350f}
+\definecolor{accent-950}{HTML}{451a03}
+
+
+\begin{document}
+\color{primary-950}
+
+\textbf {
+  \huge
+  \color{primary-950}{{ firstName }}
+  \newline
+  \newline
+  \color{accent}{{ lastName }}
+}
+\vspace{1.0cm}
+
+{{ greetings }}
+\vspace{0.5cm}
+
+{{ content }}
+\vspace{0.75cm}
+
+\begin{flushright}
+{{ closing }}
+
+\vspace{0.25cm}
+
+{
+  \setlength{\tabcolsep}{0pt}
+  \begin{supertabular}{l}
+    {{#if website}}\href{ {{ website }} }{\faIcon{link} {{ website }} } \\ {{/if}}\ignorespaces
+    {{#if email}}\href{ mailto:{{ email }} }{\faIcon{envelope} {{ email }} } \\ {{/if}}\ignorespaces
+    {{#if location}}\faIcon{globe-americas} {{ location }} {{/if}}\ignorespaces
+  \end{supertabular}
+}
+\end{flushright}
+
+\end{document}

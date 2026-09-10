@@ -5,7 +5,7 @@ import { load as loadFile } from '@/lib/files'
 import { EitherAsync } from '@/lib/purify'
 import { inspect } from 'util'
 
-export const loadJSONResumeSchema = (
+export const loadJSONResume = (
   filePath: string
 ): EitherAsync<Error, any> => {
   return loadFile(filePath)
@@ -14,10 +14,9 @@ export const loadJSONResumeSchema = (
       Value.Check(schemaDef, schema)
         ? EitherAsync.Right(schema)
         : EitherAsync.Left(
-          new Error(`Error on JSON Resume schema: ${
+          new Error(`Error validating against JSON Resume schema: ${
               inspect(Value.Errors(schemaDef, schema))
           }`)
         )
-        
     )
 }

@@ -5,7 +5,8 @@
 ########## Globals
 
 readonly WORKSPACE="$(dirname "$(dirname "$(realpath "$0")")")"
-readonly DOCKER="${WORKSPACE}/docker"
+readonly DOCKER="${ROOT}/docker"
+# shellcheck disable=SC2034
 readonly DOCKER_FILE="${DOCKER}/Dockerfile"
 
 ########## main
@@ -13,7 +14,12 @@ readonly DOCKER_FILE="${DOCKER}/Dockerfile"
 cd "$WORKSPACE" || echo "Workspace dir: $WORKSPACE doesn't exist" exit 1
 
 function main () {
-  docker build -t tinytex -f "$DOCKER_FILE" .
+  docker run \
+    --rm \
+    -v "${WORKSPACE}":/root/workspace \
+    -w /root/workspace/dist \
+    tinytex \
+    "$@"
 }
 
 main "$@"

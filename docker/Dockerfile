@@ -1,8 +1,5 @@
 FROM debian:stable-slim
 
-# Set environment variables
-# ENV BINDIR="$HOME/.local/bin"
-
 # Install system dependencies
 RUN apt update && apt-get install -y \
     # TinyTex dependencies
@@ -16,7 +13,8 @@ RUN apt update && apt-get install -y \
     libxt6 \
     xz-utils \
     jq \
-    gpg
+    gpg \
+    inkscape
 
 
 RUN mkdir /root/install/
@@ -24,3 +22,8 @@ RUN mkdir /root/install/
 # So the install script is relative to the root in the host machine
 COPY --chown=root:root ./scripts/install-tinytex-unix.sh /root/install/install-tinytex-unix.sh
 RUN /root/install/install-tinytex-unix.sh --bind-dir /usr/local/bin/
+
+# Install Tex dependencies
+COPY ./assets/tex-modules.txt /tmp/tex-modules.txt
+RUN xargs tlmgr install < /tmp/tex-modules.txt
+RUN xargs tlmgr update < /tmp/tex-modules.txt

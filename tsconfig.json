@@ -27,9 +27,10 @@
     }
   },
   "include": [
-    "scripts.ts",
+    // "scripts.ts",
     "src/**/*.ts",
-    "scripts/**/*.ts"
+    "scripts/**/*.ts",
+    "assets/**/*.ts"
     // "src/**/*.d.ts"
   ],
   "exclude": [

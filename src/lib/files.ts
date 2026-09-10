@@ -91,7 +91,7 @@ export const isDirectory = async (path: string): Promise<boolean> => {
 
 // Takes the filename from sourcePath and places it in the directory from targetPath
 // Changes the BASE (directory) of the file
-export const rebasePath = (
+export const rebaseBasename = (
   sourcePath: string,
   targetDir: string
 ) => {
@@ -101,11 +101,9 @@ export const rebasePath = (
   )
 }
 
-export const removeLastExtension = (
+export const removeExtension = (
   target: string,
-  ext: string
+  extension: string
 ) => {
-  return target.endsWith(ext)
-    ? target.slice(0, -ext.length) 
-    : target
+  return target.replaceAll(`.${extension}`, "")
 }

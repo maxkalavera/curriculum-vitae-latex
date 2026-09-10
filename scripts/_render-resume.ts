@@ -4,11 +4,9 @@ import path from 'path'
 
 import minimist from 'minimist'
 
-import '@/setup-globals'
+import { pipe, EitherAsync, Either } from '@/lib/purify'
 import { loadFunction } from '@/lib/dynamic-loader'
-import { loadJSON } from '@/lib/json'
-import { loadMarkdown } from '@/lib/markdown'
-import { loadJSONResume } from '@/lib/json-resume'
+import { loadJSONResumeSchema } from '@/lib/json-resume'
 import { rebaseBasename, removeExtension } from '@/lib/files'
 import { renderFile } from '@/lib/render'
 
@@ -16,63 +14,44 @@ import { renderFile } from '@/lib/render'
 const TEMPLATE_EXT = 'ejs'
 const argv = minimist(process.argv.slice(2))
 
-
-
 function validate () {
-  const files = argv._.slice()
+  const resume = argv._[0]
+  const files = argv._.slice(1)
+  const preprocess = argv.preprocess || argv.p
   const output = path.resolve(argv.output || argv.o || './dist')
-  const preprocess = Maybe.fromNullable(argv.preprocess || argv.p)
-  const json = Maybe.fromNullable(argv.json || argv.j)
-  const jsonResume = Maybe.fromNullable(argv['json-resume'] || argv.r)
-  const markdown = Maybe.fromNullable(argv.markdown || argv.m)
 
   return {
+    resume,
     files,
     preprocess,
-    output,
-    json,
-    jsonResume,
-    markdown
+    output
   }
 }
 
 async function main () {
   const context = validate()
 
-  let renderData: Record<string, any> = {
-    json: (
-      await context.json
-      .map(loadJSON)
-      .map(EitherAsync.getOrThrow)
-      .orDefault(Promise.resolve({}))
-    ),
-    jsonResume: (
-      await context.jsonResume
-      .map(loadJSONResume)
-      .map(EitherAsync.getOrThrow)
-      .orDefault(Promise.resolve({}))
-    ),
-    markdown: (
-      await context.markdown
-      .map(loadMarkdown)
-      .map(EitherAsync.getOrThrow)
-      .orDefault(Promise.resolve({}))      
-    )
-  }
-    
-  const preprocess = await context.preprocess
-  .map(loadFunction)
-  .map(EitherAsync.getOrThrow)
-  .orDefault(Promise.resolve(<T>(i: T) => i))
+  const resume = await pipe(
+    loadJSONResumeSchema(context.resume),
+    EitherAsync.getOrThrow
+  )
 
-  renderData = preprocess(renderData)
+  const prepareResume = await (
+    context.preprocess != null
+      ? pipe(
+        loadFunction(context.preprocess),
+        EitherAsync.getOrThrow
+      )
+      : <T>(i: T) => i
+  )
+  const renderData = prepareResume(resume)
+
   const tasks = context.files
     .map(source => [
       source,
       // Take filename from first path and push it at the end of the output dir
       rebaseBasename(
-        source,
-        // removeExtension(source, TEMPLATE_EXT), 
+        removeExtension(source, TEMPLATE_EXT), 
         context.output
       )
     ])
@@ -93,7 +72,7 @@ if (
 ) {
   function usage() {
     console.log(`
-  Usage: render <schema> [files...] [options]
+  Usage: render-resume <schema> [files...] [options]
 
   Render .tex files using a json reusme schema and optional preprocessor.
 
@@ -103,18 +82,13 @@ if (
 
   Options:
     -p, --preprocess <file>    Path to TypeScript file for preprocessing 
-                               the rendering data
-    -j, --json <file>          Attach JSON file data to rendering
-    -r, --json-resume <file>  Attach JSON file data to rendeing
-                               and validate it fulfills JSON Resume Schema
-    -m, --markdown <file>      Attach Markdown file data to rendering
-
+                               the JSON Resume Data
     -o, --output <dir>         Output directory (default: ./dist)
     -h, --help                 Show this help message
 
   Examples:
-    render schema.json file1.txt file2.txt
-    render schema.json src/*.html -o ./build --verbose
+    render-resume schema.json file1.txt file2.txt
+    render-resume schema.json src/*.html -o ./build --verbose
 
   Preprocessor Example:
     The preprocessor file should export a function that modifies the context:

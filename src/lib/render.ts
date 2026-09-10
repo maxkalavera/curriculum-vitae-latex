@@ -1,4 +1,5 @@
-import Mustache from 'mustache'
+import ejs from 'ejs'
+import type { GrayMatterFile } from 'gray-matter'
 
 import { load, put } from '@/lib/files'
 import { EitherAsync } from '@/lib/purify'
@@ -7,23 +8,24 @@ import { EitherAsync } from '@/lib/purify'
  * Types
  *****************************************************************************/
 
-export type RenderFileInput = {
-  inputPath: string,
-  outputPath: string,
+export interface RenderContext {
+  json?: any;
+  jsonResume?: any;
+  markdown?: GrayMatterFile<any>;
 }
 
 /******************************************************************************
  * Utils
  *****************************************************************************/
 
-export const render = <Resume>(
+export const render = <Resume extends ejs.Data>(
   content: string,
   resumeData: Resume
 ): string => {
-  return Mustache.render(content, resumeData);
+  return ejs.render(content, resumeData)
 }
 
-export const renderFile = <Resume>(
+export const renderFile = <Resume extends ejs.Data>(
   templatePath: string,
   outputPath: string,
   resumeData: Resume,
