@@ -15,7 +15,7 @@ RUN apt update && apt-get install -y \
     jq \
     gpg \
     inkscape
-
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /root/install/
 # Build is made with build.sh in this folder, witch puts the build context on the root of the project
@@ -23,7 +23,7 @@ RUN mkdir /root/install/
 COPY --chown=root:root ./scripts/install-tinytex-unix.sh /root/install/install-tinytex-unix.sh
 RUN /root/install/install-tinytex-unix.sh --bind-dir /usr/local/bin/
 
-# Install Tex dependencies
-COPY ./assets/tex-modules.txt /tmp/tex-modules.txt
-RUN xargs tlmgr install < /tmp/tex-modules.txt
-RUN xargs tlmgr update < /tmp/tex-modules.txt
+# # Install Tex dependencies
+# COPY ./assets/tex-modules.txt /tmp/tex-modules.txt
+# RUN xargs tlmgr install < /tmp/tex-modules.txt
+# RUN xargs tlmgr update < /tmp/tex-modules.txt

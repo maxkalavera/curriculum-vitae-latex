@@ -12,11 +12,7 @@ import { loadJSONResume } from '@/lib/json-resume'
 import { rebaseBasename, removeExtension } from '@/lib/files'
 import { renderFile } from '@/lib/render'
 
-
-const TEMPLATE_EXT = 'ejs'
 const argv = minimist(process.argv.slice(2))
-
-
 
 function validate () {
   const files = argv._.slice()
@@ -70,11 +66,7 @@ async function main () {
     .map(source => [
       source,
       // Take filename from first path and push it at the end of the output dir
-      rebaseBasename(
-        source,
-        // removeExtension(source, TEMPLATE_EXT), 
-        context.output
-      )
+      rebaseBasename(source, context.output)
     ])
     .map(([input, output]) => renderFile(input, output, renderData))
 

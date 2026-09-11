@@ -13,6 +13,7 @@
 \geometry{a4paper}
 \fontsize{12pt}{15pt}\selectfont
 \setlength\parindent{0pt}
+\renewcommand{\arraystretch}{1.5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Color definitions
@@ -44,36 +45,81 @@
 
 
 \begin{document}
-\color{primary-950}
-
-\textbf {
-  \huge
-  \color{primary-950}{{ firstName }}
-  \newline
-  \newline
-  \color{accent}{{ lastName }}
-}
-\vspace{1.0cm}
-
-{{ greetings }}
-\vspace{0.5cm}
-
-{{ content }}
-\vspace{0.75cm}
-
-\begin{flushright}
-{{ closing }}
-
-\vspace{0.25cm}
-
-{
-  \setlength{\tabcolsep}{0pt}
+\color{primary-950}%
+%
+\textbf {%
+  \huge%
+  \color{primary-950}<%- context.firstName %>%
+  \newline%
+  \newline%
+  \color{accent}<%- context.lastName %>%
+}%
+\par%
+\vspace{1.5cm}%
+%
+<%- context.greetings %>%
+\newline%
+\newline%
+%
+\begin{markdown}
+<%- context.content %>
+\end{markdown}%
+\par
+\vspace{0.75cm}%
+%
+\begin{flushright}%
+%
+\begin{markdown}
+<%- context.closing %>
+\end{markdown}%
+\par%
+\vspace{0.75cm}%
+{%
+  % \setlength{\tabcolsep}{0pt}
   \begin{supertabular}{l}
-    {{#if website}}\href{ {{ website }} }{\faIcon{link} {{ website }} } \\ {{/if}}\ignorespaces
-    {{#if email}}\href{ mailto:{{ email }} }{\faIcon{envelope} {{ email }} } \\ {{/if}}\ignorespaces
-    {{#if location}}\faIcon{globe-americas} {{ location }} {{/if}}\ignorespaces
-  \end{supertabular}
-}
-\end{flushright}
-
-\end{document}
+    <%_ if ( pipe(context.website, notEmpty()) ) { -%>
+      \href{%
+        mailto:<%- context.website %>%
+      }{%
+        \textcolor{accent}{%
+          \raisebox{-0.1em}{%
+            \faIcon{link}%
+          }%
+        }%
+        \hspace{0.5em}%
+        <%- context.website %>%
+      }%
+      \\%
+    <%_ } -%>
+%
+    <%_ if ( pipe(context.email, notEmpty()) ) { -%>
+      \href{%
+        mailto:<%- context.email %>%
+      }{%
+        \textcolor{accent}{%
+          \raisebox{-0.1em}{%
+            \faIcon{envelope}%
+          }%
+        }%
+        \hspace{0.5em}%
+        <%- context.email %>%
+      }%
+      \\%
+    <%_ } -%>
+%
+    <%_ if ( pipe(context.location, notEmpty()) ) { -%>
+      {%
+        \textcolor{accent}{%
+          \raisebox{-0.1em}{%
+            \faIcon{globe-americas}%
+          }%
+        }%
+        \hspace{0.5em}%
+        <%- context.location %>%
+      }%
+    <%_ } -%>
+  \end{supertabular}%
+}%
+\end{flushright}%
+%
+\end{document}%

@@ -8,6 +8,8 @@ readonly WORKSPACE="$(dirname "$(dirname "$(realpath "$0")")")"
 readonly DOCKER="${ROOT}/docker"
 # shellcheck disable=SC2034
 readonly DOCKER_FILE="${DOCKER}/Dockerfile"
+readonly IMAGE_NAME="latex"
+readonly INSTALLS_VOLUME="latex-installs"
 
 ########## main
 
@@ -19,7 +21,7 @@ function main () {
     --rm \
     -v "${WORKSPACE}":/root/workspace \
     -w /root/workspace \
-    tinytex /bin/bash
+    "$IMAGE_NAME" /bin/sh
 }
 
 main "$@"

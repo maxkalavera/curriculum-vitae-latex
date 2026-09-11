@@ -38,7 +38,6 @@
 \usepackage{paralist}
 \usepackage{titlecaps}
 \usepackage{array}
-\usepackage{svg}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Notes:
@@ -53,18 +52,6 @@
 % Global formating
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagestyle{empty}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SVG Icons
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \svgsetup{inkscapepath={./dist/svg-inkscape}}
-\svgsetup{
-    inkscapepath=svg-inkscape,  % Output directory
-    % inkscapeexe=inkscape,       % Path to Inkscape
-    width=\textwidth,           % Default width
-    height=\textheight         % Default height
-}
-\svgpath{./icons}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geometry
@@ -117,7 +104,7 @@
   }{
     \hphantom{}{
       \textcolor{accent}{
-        \includesvg[width=<%- globals.DEFAULT_ICON_WIDTH %>]{link-solid-black.svg}
+        \faIcon{link}%
       }
       #2
     }
@@ -169,18 +156,18 @@
     \href {%
       <%- basics.url %>%
     }{%
-      \includesvg[width=1.0em]{link-solid.svg}%
+      \faIcon{link}%
       \hspace{0.5em}%
       <%- basics.url %>%
     } \\%
     \href {%
       mailto:<%- basics.email %>%
     }{%
-      \includesvg[width=1.0em]{envelope-solid.svg}%
+      \faIcon{envelope}%
       \hspace{0.5em}%
       <%- basics.email %>%
     } \\%
-    \includesvg[width=1.0em]{earth-americas-solid.svg}%
+    \faIcon{globe-americas}%
     \hspace{0.5em}%
     <%- join(', ')([
       basics.location.region,
@@ -515,8 +502,8 @@
           <%- pipe(
             range(1, 5),
             map((_, index) => index < skill.level
-              ? '\\includesvg[width=1.0em]{circle-solid.svg}'
-              : '\\includesvg[width=1.0em]{circle-regular.svg}'
+              ? '\\faIcon{circle}'
+              : '\\faIcon[regular]{circle}'
             ),
             toArray(),
             join(' & ')
@@ -555,8 +542,8 @@
           <%- pipe(
             range(1, 5),
             map((_, index) => index < language.fluency
-              ? '\\includesvg[width=1.0em]{circle-solid.svg}'
-              : '\\includesvg[width=1.0em]{circle-regular.svg}'
+              ? '\\faIcon{circle}'
+              : '\\faIcon[regular]{circle}'
             ),
             toArray(),
             join(' & ')

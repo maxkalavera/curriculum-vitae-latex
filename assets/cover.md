@@ -8,8 +8,11 @@ greetings: |
   Greetings,
 closing: |
   Thank you for considering my application.
+
   I am confident my skills will make a meaningful impact.
+
   Best regards.
+  
   **Max Hernandez**
 
 ---

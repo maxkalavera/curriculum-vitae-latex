@@ -1,13 +1,14 @@
-import countryCodes from './country-codes.json'
 import moment from 'moment'
+
 import * as piping_helpers from '@/lib/piping'
 import type { RenderContext } from '@/lib/render'
+import countryCodes from './country-codes.json'
 
 export default (
   context: RenderContext
 ) => {
   return {
-    ...context.jsonResume,
+    ...(context.jsonResume || {}),
     /**************************************************************************
      * Helpers
      *************************************************************************/
@@ -16,55 +17,17 @@ export default (
       DEFAULT_ICON_WIDTH: '1.0em',
     },
     ...piping_helpers,
-    // compose,
-    // pipe,
-    // map,
-    // spread,
-    // range,
-    // toArray,
-    // not,
-    // or,
-    // and,
-    // isEmpty,
-    // notEmpty,
-    // filterEmpty,
-    // join,
-    // concat,
-    // truncate,
-    // words,
-    // trim,
     range,
     formatMarkdown,
     formatDate,
     formatRatingWord,
     countryCodeToName
-  };
+  }
 }
 
 /******************************************************************************
  * Source helpers
  *****************************************************************************/
-
-// function compose (
-//   ...fns: Array<(...args: any[]) => any>
-// ): (...args: any[]) => any {
-//   return (
-//     ...args: any
-//   ) =>
-//     fns
-//     .slice(1)
-//     .reduce(
-//       (acc, fn) => fn(acc), 
-//       fns.at(0)!(...args)
-//     );
-// }
-
-// function pipe(
-//   initial: any, 
-//   ...fns: Array<(arg: any) => any>
-// ): any {
-//   return compose(...fns)(initial)
-// }
 
 function* range(
   start: number,
@@ -79,140 +42,6 @@ function* range(
 /******************************************************************************
  * Mapper helpers
  *****************************************************************************/
-
-// function map <Arg, Res>(
-//   mapper: (value: Arg, index: number) => Res
-// ) {
-//   return (arr: Arg[]) => 
-//     arr.map(mapper)
-// }
-
-// function spread <
-//   Args extends readonly any[], 
-//   Res
-// > (
-//   command: (...args: Args) => Res
-// ) {
-//   return  (
-//     args: Args
-//   ) => command(...args)
-// }
-
-// function not () {
-//   return (
-//     target: boolean
-//   ) => !target
-// }
-
-// function or () {
-//   return (
-//     ...targets: boolean[]
-//   ) => {
-//     return targets.some(i => !!i)
-//   }
-// }
-
-// function and () {
-//   return (
-//     ...targets: boolean[]
-//   ) => {
-//     return targets.every(i => !!i)
-//   }
-// }
-
-// function isEmpty () {
-//   return (
-//     target: any
-//   ) => (
-//     target == null 
-//     || (typeof target === 'string' && target === '')
-//     || (Array.isArray(target) && target.length === 0)
-//     || (typeof target === 'object' && Object.keys(target).length === 0)
-//   )
-// }
-
-// function notEmpty () {
-//   return (
-//     target: any
-//   ) => pipe(
-//     target,
-//     isEmpty(),
-//     not()
-//   )
-// }
-
-// function filterEmpty () {
-//   return (
-//     targets: string[]
-//   ) => targets
-//     .filter(item => !isEmpty()(item))
-// }
-
-// function join (
-//   separator: string,
-// ) {
-//   return (
-//     parts: string[]
-//   ) => 
-//     parts.join(separator)
-// }
-
-// function concat (
-//   ...args: any[]
-// ) {
-//   return (
-//     target: string | any[]
-//   ) => {
-//     if (typeof target === 'string') {
-//       return args.reduce((str, curr) => str + String(curr), target)
-//     } else if (Array.isArray(target)) {
-//       return args.flat().concat(...target)
-//     } else {
-//       throw Error(`Target: ${target} should be string or array type`)
-//     }
-//   }
-// }
-
-// function toArray () {
-//   return <T>(
-//     target: Generator<T, void, unknown>
-//   ) => {
-//     return Array.from(target)
-//   }
-// }
-
-// function words (
-//   start: number,
-//   end?: number
-// ) {
-//   return (
-//     target: string,
-//   ) => pipe(
-//     target,
-//     str => str.trim(),
-//     // Remove duplucated spaces
-//     str => str.replace(/\s{2,}/g, ' '),
-//     str => str.split(' '),
-//     parts => parts.slice(start, end),
-//     parts => parts.join(' ')
-//   )
-// }
-
-// function trim () {
-//   return (
-//     target: string
-//   ) => target.trim()
-// }
-
-// function truncate (
-//   maxSize: number
-// ) {
-//   return (
-//     target: string
-//   ) => target.length > maxSize
-//     ? target.slice(0, maxSize)
-//     : target
-// }
 
 function formatMarkdown() {
   return (
